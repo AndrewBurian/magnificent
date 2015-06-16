@@ -12,4 +12,12 @@ A new challenger appears!
 
 Magnificent fails 25% of the time.
 
-Write a second server, whose entire purpose is to ping localhost:12345 and report on its status.
+We want to write a service to monitor the health of Magnificent Server externally.
+We want the service to run continuously, and check Magnificent Server at least
+once every 15 seconds. We want to know if it has thrown a non-200-OK response
+in the past minute, and we especially want to know if the service is no longer
+responding to requests. This service needs some method of outputting the status
+of Magnificent Server.
+
+In the future, we may want to expand our Magnificent Monitor to potentially e-mail us
+when Magnificent Server fails too often or keep historical data - but not yet.
