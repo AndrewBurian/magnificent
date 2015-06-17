@@ -1,3 +1,10 @@
+#
+# Monitor a URL continuously, providing
+# reports on its availability in a log file
+# and as a web page.
+#
+
+
 import json
 import logging
 import sys
@@ -14,6 +21,7 @@ failures = 0
 
 
 def log_to_stderr(log):
+    """ set up logging on standard error """
     format_str = "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
     logging.basicConfig(stream=sys.stderr,
                         format=format_str,
@@ -21,6 +29,7 @@ def log_to_stderr(log):
 
 
 def health_check():
+    """ perform the health check for a URL """
     global config, log, checks, successes, failures
     request = urllib2.Request(config["url"])
     checks += 1
@@ -34,17 +43,20 @@ def health_check():
 
 
 def generate_report():
+    """ format a string with current report """
     report = "%i checks, %i failures, %.2f%% success rate"
     return report % (checks,
                      failures,
                      100 * float(successes)/checks)
 
 
-def health_report():
+def log_health_report():
+    """ log the report """
     log.info("REPORT: " + generate_report())
 
 
 class MonitorSite(resource.Resource):
+    """ simple twisted site, gives the report out on the web """
     isLeaf = True
 
     def render_GET(self, request):
@@ -62,7 +74,7 @@ if __name__ == "__main__":
     check_loop = task.LoopingCall(health_check)
     check_loop.start(config["url_frequency"])
 
-    report_loop = task.LoopingCall(health_report)
+    report_loop = task.LoopingCall(log_health_report)
     report_loop.start(config["report_frequency"])
 
     reactor.run()
