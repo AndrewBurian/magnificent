@@ -1,0 +1,6 @@
+{
+  "url": "http://localhost:12345/",
+  "url_frequency": 1,
+  "report_frequency": 15,
+  "port": 54321
+}
