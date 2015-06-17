@@ -7,6 +7,8 @@ A new challenger appears!
  2. pip install twisted
  3. python server.py
  4. Okay, now you're running magnificent!
+ 5. Visit http://localhost:12345 in a web browser or something.
+ 6. It should throw a verbose error, or return "Magnificent!".
 
 ## Now it's your turn.
 
