@@ -18,7 +18,8 @@ The config file has the following format:
     "pingFrequency": "2",
     "logFrequency": "5",
     "logName": "pingTheThing.log"
-}```
+}
+```
 
 `pingFrequency` is the amount of time, in seconds, you want to wait in betwen `get_response` calls  
 `logFrequency` is the number of times you want to call `get_response` before logging
