@@ -1,0 +1,6 @@
+{
+    "url": "http://localhost:12345",
+    "pingFrequency": "2",
+    "logFrequency": "5",
+    "logFile": "pingTheThing.log"
+}
