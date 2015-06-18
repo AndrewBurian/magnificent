@@ -1,7 +1,4 @@
 
-Curtis's Solution!
-------------------
-
 ## Installation
  1. Install Python
  2. pip install twisted
