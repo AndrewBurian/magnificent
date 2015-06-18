@@ -13,7 +13,7 @@ Command-line options:
 
 `--server`,    `-s`   Specify the web address of the server (default: localhost)
 
---interval`,   `-i`   Specify the interval to check at in seconds (default: 15s)
+`--interval`,   `-i`   Specify the interval to check at in seconds (default: 15s)
 
 `--port`,      `-p`   Specify the port to reach the server on (default: 12345)
 

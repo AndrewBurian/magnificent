@@ -143,6 +143,7 @@ puts "Will now commence checking every #{$settings[:interval].to_s} seconds" + (
 log "Beginning to monitor server at " + url
 
 $status[:connected] = true
+$status[:last_connected] = Time.now.to_s
 if response.code.to_i == 200
   $status[:last_200] = Time.now.to_s
 end
@@ -164,6 +165,7 @@ if $settings[:daemon]
     Signal.trap("TERM") do
       File.delete(pid_file)
       log "Shutting down"
+      exit 0
     end
 
     Signal.trap("USR1") do
