@@ -1,25 +1,46 @@
-# magnificent
-A new challenger appears!
+# magnificent-monitor
+The challenge has been met
 
-## Installation
+## Completion time
 
- 1. Install Python
- 2. pip install twisted
- 3. python server.py
- 4. Okay, now you're running magnificent!
- 5. Visit http://localhost:12345 in a web browser or something.
- 6. It should throw a verbose error, or return "Magnificent!".
+ ~01:50:00 - Including learning Ruby as this is my first Ruby project
 
-## Now it's your turn.
+## Running the monitor
 
-Magnificent fails 25% of the time.
+Requirements: ruby, run-parts
 
-We want to write a service to monitor the health of Magnificent Server externally.
-We want the service to run continuously, and check Magnificent Server at least
-once every 15 seconds. We want to know if it has thrown a non-200-OK response
-in the past minute, and we especially want to know if the service is no longer
-responding to requests. This service needs some method of outputting the status
-of Magnificent Server.
+Command-line options:
 
-In the future, we may want to expand our Magnificent Monitor to potentially e-mail us
-when Magnificent Server fails too often or keep historical data - but not yet.
+`--server`,    `-s`   Specify the web address of the server (default: localhost)
+
+`--interval`,   `-i`   Specify the interval to check at in seconds (default: 15s)
+
+`--port`,      `-p`   Specify the port to reach the server on (default: 12345)
+
+`--warn`,      `-w`   Specify how many non-200 responses before a warning (default: 5)
+
+`--log`,       `-l`   Specify a log file to output to
+
+`--daemon`,    `-d`   Daemonize the program (Requires root)
+
+`--quiet`,     `-q`   Do not print to stdout
+
+`--kill`,      `-k`   Kill a running daemon (Requires root)
+
+## Monitor as a daemon
+
+Running the monitor with the `--daemon` flag will cause the monitor to run in the background.
+
+If a monitor is already running as a daemon, invoking the monitor again will instead cause the daemon to output its current status.
+
+To kill a running daemon, invoke the monitor with `--kill`
+
+## Extending the monitor
+
+For future enhancement, the monitor can be plugged into with any other scripts by placing them in the `hooks` directory
+
+Scripts in `warn.d` are invoked when the warning limit has been reached (and multiples thereof)
+
+Scripts in `fail.d` are invoked when the connection to the server is lost (only the first time)
+
+Scripts in `resume.d` are invoked when the connection to the server is reestablished
