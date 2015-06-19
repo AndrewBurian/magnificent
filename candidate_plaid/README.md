@@ -28,6 +28,3 @@ directory as `monitor.py`. The keys in this file represent the following:
 * `report_frequency`: how often to print a report line to the log.
 * `port`: what port to run the web server on.
 
-## Author
-
-Neil Kandalgaonkar <neilk@neilk.net>
